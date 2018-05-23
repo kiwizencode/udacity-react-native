@@ -26,7 +26,7 @@ I have tested the app under following environment:
 3. Apple iPad Generation 2 
 
 
-## Package configuration
+## Project configuration
 
 This project was first bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app)
 
@@ -106,26 +106,36 @@ To do so, following file has been ammended:
   }
 }
 ```
-
-
-The following section is still underconstruction ......`
-
-
-
-## Here is the project structure
+## Project structure
 ```bash
 ├── README.md - This file.
 ├── package.json # npm package manager file.
-├── public
-│   ├── favicon.ico # React Icon.
-│   └── index.html # DO NOT MODIFY
 └── src
     ├── actions
-    │   ├── categories.js # Actions & Action creators for categories.
-    │   ├── comments.js # Actions & Action creators for (post) comment.
-    │   ├── index.js # main file that exports all Action & Action creators.
-    │   ├── posts.js # Actions & Action creators for posts.
-    │   └── sort_post # Actions & Action creators for sorting of posts.
+    │   ├── deck.js # Action creator for deck.
+    │   ├── decks.js # Action creators for decks or flashcards.
+    │   ├── notice.js # Action creators for notification.
+    ├── components
+    │   └── ................................
+
+
+    ├── contants # contains files with constant declaration, which will be used by other react component.
+    │   ├── database.constants.js # contains storage key for flashcard and notification. Also contain data pending, fulfilled and reject constant.
+    │   ├── deck.constants.js # contains constants used by deck reducer as well as Redux Promise Middleware when fetching deck information from AsyncStorage.
+    │   └── decks.constants.js # contains constants used by decks/flashcards reducer as well as Redux Promise Middleware when fetching decks/flashcards information from AsyncStorage. 
+    │   └── notice.constants.js # contains constants used by notification reducer as well as Redux Promise Middleware when fetching notification information from AsyncStorage. 
+    ├── helpers # contains files related to AsyncStorage operation.
+    │   ├── database.js # contains all API for processing AysncStorage operation. 
+    │   └── flashcards.js # contains sample flashcards.
+    ├── reducers # components that specify how the application's state changes in response to actions sent to the store.
+    │   ├── deck.js # reducers for deck Action.
+    │   ├── decks.js # reducers for decks Action.
+    │   ├── index.js # main file that exports all reducers.
+    │   └── notice.js # reducers for notification Action.
+
+
+    ..................................................
+
     ├── components
     │   └── main_section # components related to main section.
     │   │   └── main_nav # components realted to main navigation section.
@@ -158,17 +168,8 @@ The following section is still underconstruction ......`
     │   ├── Header.js # react component that render the header section of the main page.
     │   ├── NoMatch.css # Styles for No Match component.
     │   └── NoMatch.js # react component that render a page when encounter 404 page in the app.   
-    ├── containers # components that incorporate redux store data state and dispatch function with some of the react components.
-    │   ├── FilterCategory.js # This add redux data state or dispatch function to Category component. This perform some action when user select a categoryb (in CategorySelector.js)
-    │   ├── Main.js # This add redux store data or dispatch function to MainSection component. It's basically perform sort operation on the list of post based on user selection (in SortPostSelector.js) and store the result ina varianble called sorted_posts.
-    │   └── Readable.js # This add redux store data or dispatch function to App (root) component. It define most of the redux store state as well as functions required in the whole application.  
-    ├── reducers # components that specify how the application's state changes in response to actions sent to the store.
-    │   ├── categories.js # reducers for categories.
-    │   ├── category.js # reducers for action when user select a category (in CategorySelector.js). It also change for any change in url and update the state of the category based on the change in url.
-    │   ├── comments.js # reducers for (post) comment.
-    │   ├── index.js # main file that exports all reducers ( including redux router reducer).
-    │   ├── posts.js # reducers for posts.
-    │   └── sort_post # reducers for sorting of posts.
+ 
+
     ├── utils # java script that perform general function in the application.
     │   ├── constant_helper.js # define constant used in the application.
     │   ├── db_api_helper.js # define functions to perform web api to the backend server.
