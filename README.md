@@ -4,12 +4,12 @@ The objective of the project is to build mobile application (Android or iOS or b
 
 The app will have the following functionality:
 
-* 1. list of flashcards created by user which are grouped by different categories in "decks".
-* 2. User could create new deck by entering a title.
-* 3. Inside the individual deck, the user can add flashcard or "card" to the existing deck.
-* 4. When adding a new card, the user will enter the question, create a list of choices for the question as well as the correct choice as the answer.
-* 5. The user can test themselve by doing a quiz on the cards in a deck.
-* 6. The users are do at least a quiz a day. A notification will appear after midday (NZ time), remind the user to do a quiz. Once a quiz is done, the notifcation on that day will not be appear. 
+1. list of flashcards created by user which are grouped by different categories in "decks".
+2. User could create new deck by entering a title.
+3. Inside the individual deck, the user can add flashcard or "card" to the existing deck.
+4. When adding a new card, the user will enter the question, create a list of choices for the question as well as the correct choice as the answer.
+5. The user can test themselve by doing a quiz on the cards in a deck.
+6. The users are do at least a quiz a day. A notification will appear after midday (NZ time), remind the user to do a quiz. Once a quiz is done, the notifcation on that day will not be appear. 
 
 
 ## How to run this project
