@@ -34,7 +34,7 @@ I have make some modification to the project file structure.
 
 ### package.json
 
-``bash
+```bash
 {
   "name": "mobile-flashcards",
   "version": "0.8.0",
@@ -66,7 +66,7 @@ I have make some modification to the project file structure.
     "redux-promise-middleware": "^5.1.1"
   }
 }
-``
+```
 
 
 
