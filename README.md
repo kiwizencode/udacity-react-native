@@ -19,6 +19,15 @@ We need to install all project dependencies and start the development server, ru
 * `npm install`
 * `npm start`
 
+I have tested the app under following environment:
+
+1. Genymotion emulator - Samsung Galaxy S6 - 5.1.0 - API 22 - 1440x2560
+2. Actual phone - Motorola Moto G - 5.1 - Modal XT1033 - 720 x 1280
+3. Apple iPad Generation 2 
+
+
+## Package configuration
+
 
 The following section is still underconstruction ......`
 
