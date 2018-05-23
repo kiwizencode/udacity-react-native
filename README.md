@@ -16,8 +16,8 @@ The app will have the following functionality:
 
 We need to install all project dependencies and start the development server, run the following commands :
 
-* `npm install`
-* `npm start`
+* `yarn install`
+* `yarn start`
 
 I have tested the app under following environment:
 
@@ -27,6 +27,49 @@ I have tested the app under following environment:
 
 
 ## Package configuration
+
+This project was first bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app)
+
+I have make some modification to the project file structure.
+
+### package.json
+
+``bash
+{
+  "name": "mobile-flashcards",
+  "version": "0.8.0",
+  "private": true,
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^3.1.1",
+    "jest-expo": "~27.0.0",
+    "react-native-scripts": "1.14.0",
+    "react-test-renderer": "16.3.1"
+  },
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^27.0.1",
+    "react": "16.3.1",
+    "react-native": "~0.55.2",
+    "react-navigation": "^2.0.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-promise-middleware": "^5.1.1"
+  }
+}
+``
+
+
+
 
 
 The following section is still underconstruction ......`
