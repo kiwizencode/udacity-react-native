@@ -30,7 +30,7 @@ I have tested the app under following environment:
 
 This project was first bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app)
 
-I have make some modification to the project file structure.
+I have make some modification to the project file structure, starting from the following file:
 
 ### package.json
 
@@ -67,9 +67,45 @@ I have make some modification to the project file structure.
   }
 }
 ```
+As you can see, I have move all javaScript code into `src` directory and have changed the initial start file to `./src/index.js`, which will run `App` component in `./components`.
 
+### ./src/index.js
 
+```bash
+import Expo from 'expo';
+import App from './components/App';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 
+if (process.env.NODE_ENV === 'development') {
+  Expo.KeepAwake.activate();
+}
+
+Expo.registerRootComponent(App);
+```
+
+Also I have also added [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-rn-module-resolver) package to use alias for directories, specific files, or even other npm modules instead of using relative paths in the project.
+
+To do so, following file has been ammended:
+
+### .babelrc
+
+```bash
+{
+  "presets": ["babel-preset-expo"],
+  "env": {
+    "development": {
+      "plugins": [
+        "transform-react-jsx-source",
+        [ "module-resolver", {
+          "root": ["./src"],
+          "extensions": [".js", ".ios.js", ".android.js"] 
+          } ]        
+      ]
+    }
+  }
+}
+```
 
 
 The following section is still underconstruction ......`
