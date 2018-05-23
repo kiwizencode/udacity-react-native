@@ -111,14 +111,33 @@ To do so, following file has been ammended:
 ├── README.md - This file.
 ├── package.json # npm package manager file.
 └── src
-    ├── actions
+    ├── actions # contains Action creator files
     │   ├── deck.js # Action creator for deck.
     │   ├── decks.js # Action creators for decks or flashcards.
     │   ├── notice.js # Action creators for notification.
     ├── components
-    │   └── ................................
-
-
+    │   ├── AddQuestion # components related to 'Add Question' funtionality.  
+    │   │   ├── AddQuestionView.js # the main components for 'Add Question' screen. It handles all the state as well as provide functionality for the other components.
+    │   │   ├── AnswerSelectView.js # this component provide a Picker for user to select a 'Choice' as the answer to the 'Question' as well as  a 'Submit' button to save the 'Question to the 'Deck' collection.
+    │   │   ├── MultiChoiceView.js # this component provide a Text Input field for user to keyin 'Choice' for the question. There is a Flat List component which will show the list of 'Choice' for the 'Question'.
+    │   │   └── QuestionView.js # This component proide a Text Input field for user to enter text for the 'Question'.
+    │   ├── Common # The folder contain reuseable 'Common' component used by other components
+    │   │   └── TextButton.js  # This component proide 'Common Button' component with animated effect when pressed as well as provide a text label on the 'Button'. This component will be 'disable' mode until a valid data validation is done and a flag will be set to 'enable' the component.
+    │   ├── CreateDeck # components related to 'Create Deck' funtionality.
+    │   │   └── CreateDeckView.js  # This component proide a Input Text field for user to enter the title for the new Deck, as well as a 'Create Deck' button to save the new deck.
+    │   ├── Deck # components related to 'Deck' detail funtionality.
+    │   │   └── DeckView.js  # This component display the detail information about the deck. It also provide 2 buttons : 'Create New Question' button for user to navigate to 'Add Question' Screen (AddQuestionView.js). 'Start Quiz' button for user to navigate to 'Quiz' Screen (QuizView.js).
+    │   ├── DeckList # components related to 'Deck Lis' funtionality.
+    │   │   ├── DeckListItem.js  # This compoent display a 'Deck' information in Touchable component which show animation when pressed and when pressed, the app will navigate the user to 'Deck' detail screen (DeckView.js).
+    │   ├── Navigator # components related to Navigation funtionality.
+    │   │   ├── DeckLTabsNavigator.js  # This components provide the 'Tab' navigation functionality. It will provide 2 tabs. The first will display 'Deck List' SCreen (DeckListView.js), and the second will show 'Create Deck' Screen. (CreateDeck.js)
+    │   │   └── MainNavigator.js  # This component provide the 'Stack' navigation. It will first house the DeckNavigator component, which in turn will show 'Deck List' screen first and from the 'Deck List' screen, user can navigate to other screen.
+    │   ├── Quiz # components related to 'Quiz' funtionality.
+    │   │   ├── AnswerView.js  # This component provide the 'Answer' Screen for the 'Quiz'. It will provide the question as well as the answer for the auestion. It will also tell the user whether he/she has answer the question. It has 2 mode: the first mode, if there is more question, a 'Next Question' button will appear for user to move to the next question. the second mode will show when the app comes to the last question fo the quiz, it will show the user how many question they has answered correctly and also provide additional 2 buttons : 'Restart Quiz' button to restart the quiz. 'Back to Deck' button to navigate user back to 'Deck' Screen. (DeckView.js)
+    │   │   ├── QuestionHeader.js # This component displays the quiz qestion.
+    │   │   ├── QuestionBody.js # This component displays a mutiple choices answer for the question for user to choose.
+    │   │   ├── QuestionHeader.js # This component provides a Picker component for user to select a choice as well as a 'Show Answer' button to move to the 'Answer' screen.
+    │   └── App.js # This component initialize store, the middleware and then call MainNavigator component.
     ├── contants # contains files with constant declaration, which will be used by other react component.
     │   ├── database.constants.js # contains storage key for flashcard and notification. Also contain data pending, fulfilled and reject constant.
     │   ├── deck.constants.js # contains constants used by deck reducer as well as Redux Promise Middleware when fetching deck information from AsyncStorage.
@@ -127,65 +146,18 @@ To do so, following file has been ammended:
     ├── helpers # contains files related to AsyncStorage operation.
     │   ├── database.js # contains all API for processing AysncStorage operation. 
     │   └── flashcards.js # contains sample flashcards.
-    ├── reducers # components that specify how the application's state changes in response to actions sent to the store.
+    └── reducers # components that specify how the application's state changes in response to actions sent to the store.
     │   ├── deck.js # reducers for deck Action.
     │   ├── decks.js # reducers for decks Action.
     │   ├── index.js # main file that exports all reducers.
     │   └── notice.js # reducers for notification Action.
-
-
-    ..................................................
-
-    ├── components
-    │   └── main_section # components related to main section.
-    │   │   └── main_nav # components realted to main navigation section.
-    │   │   │   ├── Category.css # Styles for category component.
-    │   │   │   ├── Category.js # react component that render a Link component for a category.
-    │   │   │   ├── CategorySelector.css # Styles for category selector component.
-    │   │   │   ├── CategorySelector.js # react component that render a list of Category components for user to select. This is done by using a container component FilterCategory for the Category component.
-    │   │   │   ├── MainNav.css # Styles for main navigation section component.
-    │   │   │   ├── MainNav.js # this is the main navigation section componen which, in turn, render both CategorySelector component and SortPostSelector component. 
-    │   │   │   ├── SortPostSelector.css # Styles for sorting of post component.
-    │   │   │   ├── SortPostSelector.js # react component that render a list of post attributes for user to select to sort post by. 
-    │   │   ├── comment.svg # background image for no of comments. 
-    │   │   ├── CommentCards.css # Styles for comment 'card' component.
-    │   │   ├── CommentCards.js # react component that render comment information.
-    │   │   ├── CommentModalDialog.css # Styles for comment dialog box component.
-    │   │   ├── CommentModalDialog.js # react component that render a modal dialog box to display comment's information. (for creating/editing/deleting comment operation)
-    │   │   ├── CommentSection.js # This is the (main) comment section component which will display a list of comment 'card' for a particular post. It also contain separate CommentModalDialog components for editing and deleting of comment.
-    │   │   ├── heart.svg # background image for no of voteScore for both post and comment component. 
-    │   │   ├── MainSection.js # This is the Main Section component. It will display the main navigation component as well as the post section. It will contain separate PostModalDialog components for creating, editing and deleting of post. In addition, it will also contain a CommentModalDialog components to create new comment.
-    │   │   ├── PostCard.css # Styles for post 'card' component. 
-    │   │   ├── PostCard.js # react component that render render either post summary (POST_SUMMARY) or post detail (POST_DETAIL) information.
-    │   │   ├── PostModalDialog.css # Styles for post dialog box component.
-    │   │   ├── PostModalDialog.js # react component that render a modal dialog box to display post's information. (for creating/editing/deleting post operation)
-    │   │   ├── thumbs-down.svg # background image for 'down' voteScore for both post and comment component. 
-    │   │   ├── thumbs-up.svg # background image for 'up' voteScore for both post and comment component. 
-    │   ├── App.js # This is the root of the app. It will render Header component as well as Footer component. It also setup the routing for MainSection component for the app.
-    │   ├── Footer.css # Styles for footer section component.
-    │   ├── Footer.js # react component that render the footer section of the main page.
-    │   ├── Header.css # Styles for header section component.
-    │   ├── Header.js # react component that render the header section of the main page.
-    │   ├── NoMatch.css # Styles for No Match component.
-    │   └── NoMatch.js # react component that render a page when encounter 404 page in the app.   
- 
-
-    ├── utils # java script that perform general function in the application.
-    │   ├── constant_helper.js # define constant used in the application.
-    │   ├── db_api_helper.js # define functions to perform web api to the backend server.
-    │   └── sort_post_helper.js # define constants related to sorting of post.
-    ├── index.css # styles sheet for index.js. I have added some common elements style sheet, which is standard throughout the whole project.   
-    └── index.js # It has the follwoing tasks : create the store, middleware, as well as synchronize router history with store. And finally it is render the main component to DOM.
+    └── index.js # This file is the main entry point for the app.
 ```
 
 ## Following are rescources that I used in preparing for this project
 
-* revise all react redux lessons in udacity nanodegree.
-* [React Redux Todo List example](https://redux.js.org/basics/example-todo-list) 
-* [Usage with React Router](https://redux.js.org/advanced/usage-with-react-router)
-* [Managing the URL in a Redux app](https://blog.marvelapp.com/managing-the-url-in-a-redux-app/)
-* Create a react modal dialog with [react-modal](https://github.com/reactjs/react-modal)
-
-## Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+* revise all react native lessons in udacity nanodegree.
+* [How to handle side effects or asynchronous actions in a redux application](https://medium.com/react-native-training/redux-4-ways-95a130da0cdc)
+* [Android stack header too high](https://github.com/react-navigation/react-navigation/issues/12)
+* [Quick Tip: How to Sort an Array of Objects in JavaScript](https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/)
+* [How to shuffle an array in JavaScript](https://www.frankmitchell.org/2015/01/fisher-yates/)
